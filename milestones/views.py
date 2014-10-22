@@ -1,7 +1,8 @@
 from django.shortcuts import render
-from rest_framework import viewsets
+from rest_framework import viewsets, filters
 from milestones.models import Diary, MileStone
 from milestones.serializers import DiarySerializer, MileStoneSerializer
+from milestones.filters import DiaryFilter, MilestoneFilter
 
 # Create your views here.
 
@@ -12,6 +13,12 @@ class DiaryViewSet(viewsets.ModelViewSet):
     """
     queryset = Diary.objects.all()
     serializer_class = DiarySerializer
+    filter_backends = (filters.DjangoFilterBackend,)
+#     filter_fields = ('title', 'description',)
+#     filter_backends = (filters.SearchFilter,)
+#     search_fields = ('=title', 'description')
+    filter_class = DiaryFilter
+    
 
 class MileStoneViewSet(viewsets.ModelViewSet):
     """
@@ -20,3 +27,4 @@ class MileStoneViewSet(viewsets.ModelViewSet):
     """
     queryset = MileStone.objects.all()
     serializer_class = MileStoneSerializer
+    filter_class = MilestoneFilter
