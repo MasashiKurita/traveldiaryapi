@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from rest_framework import viewsets, filters
 from milestones.models import Diary, MileStone
 from milestones.serializers import DiarySerializer, MileStoneSerializer

@@ -37,10 +37,12 @@ class DiarySerializer(serializers.ModelSerializer):
                                     max_length=100)
     title = serializers.CharField(required=False,
                                   max_length=100)
-    description = serializers.CharField(widget=widgets.Textarea,
-                                 max_length=500)
+    description = serializers.CharField(required=False,
+                                        widget=widgets.Textarea,
+                                        max_length=500)
 
-    milestones = MileStoneSerializer(many=True)
+    milestones = MileStoneSerializer(required=False,
+                                     many=True)
     
     class Meta:
         model = Diary

@@ -1,4 +1,4 @@
-from rest_framework.test import APITestCase, APIRequestFactory
+from rest_framework.test import APITestCase
 from rest_framework import status
 from milestones.models import Diary, MileStone
 
@@ -63,10 +63,50 @@ class DiaryViewSetTests(APITestCase):
         
     def test_view_list_put(self):
         
-        response = self.client.post('/diaries/', {'title': 'piyo'}, format='json')
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        data = {
+                'title': 'piyo',
+                'description': 'hoge fuga piyo',
+                'milestones': [
+                               {
+                                'page_id': 'KKKKK'
+                                },
+                               {
+                                'page_id': 'LLLLL'
+                                }
+                               ]
+                }
+        response = self.client.post('/diaries/', data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
         self.assertEqual(response.data['title'], 'piyo')
+        self.assertEqual(response.data['description'], 'hoge fuga piyo')
+        self.assertEqual(len(response.data['milestones']), 2)
+        self.assertEqual(response.data['milestones'][0]['page_id'], 'KKKKK')
+        self.assertEqual(response.data['milestones'][1]['page_id'], 'LLLLL')
+
+    def test_view_detail_put(self):
+        
+        response = self.client.get("/diaries/3/")
+        
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        
+        self.assertEqual(response.data['title'], 'hoge')
+        self.assertEqual(response.data['milestones'][0]['page_id'], 'IIIII')
+        self.assertEqual(response.data['milestones'][1]['page_id'], 'XXXXX')
+ 
+        data = {
+                'title': 'puyo',
+                'description': 'hoge fuga piyo'
+                }
+        response = self.client.post('/diaries/3/', data, format='json')
+        print(response.data)
+
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        self.assertEqual(response.data['title'], 'puyo')
+#         self.assertEqual(response.data['description'], 'hoge fuga piyo')
+#         self.assertEqual(len(response.data['milestones']), 2)
+#         self.assertEqual(response.data['milestones'][0]['page_id'], 'KKKKK')
+#         self.assertEqual(response.data['milestones'][1]['page_id'], 'LLLLL')
         
 # class MilestoneViewSetTests(APITestCase):
 #     
