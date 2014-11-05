@@ -13,9 +13,6 @@ class DiaryViewSet(viewsets.ModelViewSet):
     queryset = Diary.objects.all()
     serializer_class = DiarySerializer
     filter_backends = (filters.DjangoFilterBackend,)
-#     filter_fields = ('title', 'description',)
-#     filter_backends = (filters.SearchFilter,)
-#     search_fields = ('=title', 'description')
     filter_class = DiaryFilter
     
 
@@ -26,4 +23,5 @@ class MileStoneViewSet(viewsets.ModelViewSet):
     """
     queryset = MileStone.objects.all()
     serializer_class = MileStoneSerializer
+    filter_backends = (filters.DjangoFilterBackend,)
     filter_class = MilestoneFilter

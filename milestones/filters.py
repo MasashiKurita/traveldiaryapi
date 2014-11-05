@@ -22,6 +22,7 @@ class MilestoneFilter(django_filters.FilterSet):
     '''
     classdocs
     '''
+    diary = django_filters.NumberFilter(name='diary')
     page_id = django_filters.CharFilter(name='page_id')
     
     class Meta:
