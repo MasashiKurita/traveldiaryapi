@@ -76,6 +76,8 @@ class DiaryViewSetTests(APITestCase):
                                ]
                 }
         response = self.client.post('/diaries/', data, format='json')
+
+        print(response.data)
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
  
         self.assertEqual(response.data['title'], 'piyo')
@@ -168,23 +170,22 @@ class MilestoneViewSetTests(APITestCase):
 
         self.assertEqual(len(response3.data), 3)
 
-#     def test_view_list_put(self):
-#          
-#         diary = Diary.objects.get(title="fuga")
-#          
-#         data = {
-#                 'diary': diary.id,
-#                 'page_id': 'KKKKK'
-#         }
-#         print(data)
-#          
-#         response = self.client.post('/milestones/', data, format='json')
-#         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-#  
-#         self.assertEqual(response.data['diary'], diary.id)
-#         self.assertEqual(response.data['page_id'], 'KKKKK')
-#  
-#         response2 = self.client.get('/milestones/')
-#         self.assertEqual(response2.status_code, status.HTTP_200_OK)
-#  
-#         self.assertEqual(len(response2.data), 4)
+    def test_view_list_put(self):
+          
+        diary = Diary.objects.get(title="fuga")
+          
+        data = {
+                'diary': diary.id,
+                'page_id': 'MMMMM'
+        }
+          
+        response = self.client.post('/milestones/', data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+  
+        self.assertEqual(response.data['diary'], diary.id)
+        self.assertEqual(response.data['page_id'], 'MMMMM')
+  
+        response2 = self.client.get('/milestones/')
+        self.assertEqual(response2.status_code, status.HTTP_200_OK)
+  
+        self.assertEqual(len(response2.data), 5)
