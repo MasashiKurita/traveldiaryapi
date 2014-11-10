@@ -17,7 +17,7 @@ class MileStoneSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = MileStone
-        fields = ('page_id', 'diary',)
+        fields = ('id', 'page_id', 'diary',)
         
     def restore_object(self, attrs, instance=None):
         """
@@ -54,10 +54,6 @@ class DiarySerializer(serializers.ModelSerializer):
         fields = ('id', 'user_id', 'title', 'description', 'milestones',)
         depth = 1
                 
-    def validate_milestones(self, attrs, source="milestones"):
-        #print("validate::diaryserializer")
-        return attrs
-
     def restore_object(self, attrs, instance=None):
         """
         Create or update a new diary instance, given a dictionary
@@ -71,7 +67,7 @@ class DiarySerializer(serializers.ModelSerializer):
             instance.user_id = attrs.get('user_id', instance.user_id)
             instance.title = attrs.get('title', instance.title)
             instance.description = attrs.get('description', instance.description)
-            instance.milestones = attrs.get('milestones', instance.milestones)
+            #instance.milestones = attrs.get('milestones', instance.milestones)
             return instance
      
         # Create new instance
