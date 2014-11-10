@@ -11,9 +11,7 @@ class MileStoneSerializer(serializers.ModelSerializer):
 
     page_id = serializers.CharField(required=False,
                                     max_length=100)
-    diary = serializers.PrimaryKeyRelatedField()
-#     diary = serializers.RelatedField(source="diary.id",)
-#     diary_id = serializers.RelatedField(source="dairy.id")
+    diary = serializers.RelatedField(source="diary.id",)
     
     class Meta:
         model = MileStone
@@ -33,7 +31,6 @@ class MileStoneSerializer(serializers.ModelSerializer):
             return instance
    
         # Create new instance
-        #return MileStone(**attrs)
         return serializers.ModelSerializer.restore_object(self, attrs, instance=instance)
     
 class DiarySerializer(serializers.ModelSerializer):
@@ -71,5 +68,4 @@ class DiarySerializer(serializers.ModelSerializer):
             return instance
      
         # Create new instance
-        #return Diary(**attrs)
         return serializers.ModelSerializer.restore_object(self, attrs, instance=instance)

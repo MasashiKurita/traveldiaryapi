@@ -62,14 +62,14 @@ class DiaryViewSetTests(APITestCase):
         data = {
                 'title': 'piyo',
                 'description': 'hoge fuga piyo',
-#                 'milestones': [
-#                                {
-#                                 'page_id': 'KKKKK'
-#                                 },
-#                                {
-#                                 'page_id': 'LLLLL'
-#                                 }
-#                                ]
+                'milestones': [
+                               {
+                                'page_id': 'KKKKK'
+                                },
+                               {
+                                'page_id': 'LLLLL'
+                                }
+                               ]
                 }
         response = self.client.post('/diaries/', data, format='json')
 
@@ -77,9 +77,9 @@ class DiaryViewSetTests(APITestCase):
  
         self.assertEqual(response.data['title'], 'piyo')
         self.assertEqual(response.data['description'], 'hoge fuga piyo')
-#         self.assertEqual(len(response.data['milestones']), 2)
-#         self.assertEqual(response.data['milestones'][0]['page_id'], 'KKKKK')
-#         self.assertEqual(response.data['milestones'][1]['page_id'], 'LLLLL')
+        self.assertEqual(len(response.data['milestones']), 2)
+        self.assertEqual(response.data['milestones'][0]['page_id'], 'KKKKK')
+        self.assertEqual(response.data['milestones'][1]['page_id'], 'LLLLL')
 
     def test_view_detail_get(self):
         

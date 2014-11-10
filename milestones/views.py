@@ -24,3 +24,7 @@ class MileStoneViewSet(viewsets.ModelViewSet):
     serializer_class = MileStoneSerializer
     filter_backends = (filters.DjangoFilterBackend,)
     filter_class = MilestoneFilter
+    
+    def pre_save(self, obj):
+        obj.diary = Diary.objects.get(pk=self.request.DATA['diary'])
+        viewsets.ModelViewSet.pre_save(self, obj)
