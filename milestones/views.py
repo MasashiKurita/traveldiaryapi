@@ -14,7 +14,7 @@ class DiaryViewSet(viewsets.ModelViewSet):
     serializer_class = DiarySerializer
     filter_backends = (filters.DjangoFilterBackend,)
     filter_class = DiaryFilter
-    
+            
 class MileStoneViewSet(viewsets.ModelViewSet):
     """
     This viewset automatically provides `list`, `create`, `retrieve`,
@@ -23,4 +23,4 @@ class MileStoneViewSet(viewsets.ModelViewSet):
     queryset = MileStone.objects.all()
     serializer_class = MileStoneSerializer
     filter_backends = (filters.DjangoFilterBackend,)
-    filter_class = MilestoneFilter    
+    filter_class = MilestoneFilter
