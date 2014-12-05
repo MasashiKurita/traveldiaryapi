@@ -49,7 +49,6 @@ class DiarySerializer(serializers.ModelSerializer):
     class Meta:
         model = Diary
         fields = ('id', 'user_id', 'title', 'description', 'milestones',)
-        depth = 1
                 
     def restore_object(self, attrs, instance=None):
         """
