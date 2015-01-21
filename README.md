@@ -3,7 +3,7 @@ traveldiaryapi
 
 ## Requirement
     bash$ mysql --version
-    mysql Ver 14.14
+    mysql Ver 14.14 Distrib 5.5.40
     bash$ python -V
     Python 3.4.2
     bash$ pip freeze -l  
