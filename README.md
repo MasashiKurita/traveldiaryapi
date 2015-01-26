@@ -9,6 +9,7 @@ traveldiaryapi
     bash$ pip freeze -l  
     Django==1.7.3  
     Markdown==2.5.2  
+    django-filter==0.9.1  
     djangorestframework==2.4.4  
     mysql-connector-python==2.0.2  
 
